@@ -1,0 +1,58 @@
+BLASTN 2.2.30+
+
+
+Query= QuerySeq
+
+Length=144
+
+Subject= RefSeq
+
+Length=166
+
+
+ Score =   128 bits (69),  Expect = 4e-35
+ Identities = 69/69 (100%), Gaps = 0/69 (0%)
+ Strand=Plus/Plus
+
+Query  54   CATCACCAGACTGTGCATATCTCGGCCAAGAGGAATCTGATTCAAGTTAACCTTCTGAGT  113
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  1    CATCACCAGACTGTGCATATCTCGGCCAAGAGGAATCTGATTCAAGTTAACCTTCTGAGT  60
+
+Query  114  TGCAACACC  122
+            |||||||||
+Sbjct  61   TGCAACACC  69
+
+
+ Score = 97.1 bits (52),  Expect = 1e-25
+ Identities = 52/52 (100%), Gaps = 0/52 (0%)
+ Strand=Plus/Plus
+
+Query  1    GCTGGCAGCCTATTTTTCTCTTCATTGTTGTGGTAAAGGGCTCCATCATTTC  52
+            ||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  115  GCTGGCAGCCTATTTTTCTCTTCATTGTTGTGGTAAAGGGCTCCATCATTTC  166
+
+
+ Score = 39.9 bits (21),  Expect = 2e-08
+ Identities = 21/21 (100%), Gaps = 0/21 (0%)
+ Strand=Plus/Plus
+
+Query  124  CTCCTTCCTGCGGAAGACTGT  144
+            |||||||||||||||||||||
+Sbjct  92   CTCCTTCCTGCGGAAGACTGT  112
+
+
+
+Lambda      K        H
+    1.33    0.621     1.12 
+
+Gapped
+Lambda      K        H
+    1.28    0.460    0.850 
+
+Effective search space used: 21488
+
+
+
+
+Matrix: blastn matrix 1 -2
+Gap Penalties: Existence: 0, Extension: 2.5

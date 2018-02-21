@@ -1,0 +1,3 @@
+[BlastChecking]
+QueryFaPath=/home/lq/lxwg/Software/Long_Reads_Error_Correction/PBcR/Case2_Hybrid_Correction_Raw_LongReads_Raw_ShortReads/Result/asm.ctg.fasta
+SubjectFaPath=/home/lq/lxwg/Software/Long_Reads_Error_Correction/__Small_Test_Data/reference.fasta
