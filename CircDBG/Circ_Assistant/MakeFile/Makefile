@@ -2,7 +2,7 @@ CODE=../CircClassify/
 
 CC = g++
 #CFLAGS = -O3 -Wall -std=c++0x -static -I$(BAMTOOLS) -L$(BAMTOOLS_LD) -Wl,-rpath,$(BAMTOOLS_LD)
-CFLAGS = -O3 -Wall -static -std=c++0x
+CFLAGS = -O3 -Wall -std=c++0x
 LIBS += -lz
 OBJ = ./obj/
 

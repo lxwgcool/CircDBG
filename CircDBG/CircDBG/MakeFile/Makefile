@@ -16,7 +16,7 @@ BAMTOOLS_LD=/apps/bamtools/2.3.0/lib
 CC = g++
 INC_DIR = $(SharedLibraryPath) #Identify include path
 #CFLAGS = -O3 -Wall -std=c++0x -static -I$(BAMTOOLS) -L$(BAMTOOLS_LD) -Wl,-rpath,$(BAMTOOLS_LD)
-CFLAGS = -O3 -Wall -static -std=c++0x
+CFLAGS = -O3 -Wall -std=c++0x
 LIBS += -lz
 LIBS += -lpthread
 #INCLUDEPATH += tr1/memory
