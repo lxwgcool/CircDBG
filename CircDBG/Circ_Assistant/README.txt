@@ -41,9 +41,29 @@ How to use CircAssistant
 
 4: Result: 
   (1) The results locate in the folder "./Classify_Result"
-  (2) ./AlignInfoSum.txt  : Alignment status of each circular RNA
-  (3) ./Brief_sum_good.txt: Summary of good circRNA
-
+      a) ./AlignInfoSum.txt  : Alignment status of each circular RNA
+      b) ./Brief_sum_good.txt: Summary of good circRNA
+  (2) The result in directly output
+      a) Number of circular RNA of different type, for example:
+        ----------------Example----------------
+	Sum_Good              : 1779 --> 67.90%
+	Sum_Bad               : 15 --> 0.57%
+	Sum_AdditionalPart     : 132 --> 5.04%
+	Sum_AdditionalPart(Ref): 1 --> 0.04%
+	Sum_Imbalance          : 667 --> 25.46%
+	Sum_LowQuality         : 25 --> 0.95%
+	---------------------------------------
+      b) The detail of Chimeric Circular RNA, for example
+        ----------------Example-----------------------
+	****************Check Chimeric****************
+	Acceptor
+	GGATGAATATAGCTTAGAACAAGGAGATCTACACCAGTATCACATTTAAACCCTTATCTGTTCAGTGGAGCTGCTGCTAAGTTCATCACCAGATTCAGAAT
+	Candi Start & End: 32197100 : 32199491	
+	...
+	>>>>>>>>>>>>>>>>
+	Chimeric Sum: 13 --> 0.50%
+	----------------------------------------------	
+       
 5: Notice: 
   (1) The chromosome should be listed in gtf file sequencially, which means that the order should be 1,2,3,4,5 and etc. The chromosome should start at the first one.  
   (2) CircDBG only support gtf format. 
