@@ -1,6 +1,6 @@
 #include <iostream>
 #include "clsconfig.h"
-#include "clspreevaluation.h"
+//#include "clspreevaluation.h"
 #include "clsdebruijngraph.h"
 #include "clscircrnadetection.h"
 #include "clsresultcomparison.h"
@@ -32,11 +32,11 @@ int main(int argc, char **argv)
     delete pConfig;
     pConfig = NULL;
 
-    //2. Make evaluation (Check if we could arvhieve the idea result theoretically)
-    ClsPreEvaluation* pPE = new ClsPreEvaluation(stConfig);
-    //pPE->GetValidStdCandiByChormoson(1);  // get the first chromosome
-    delete pPE;
-    pPE = NULL;
+//    //2. Make evaluation (Check if we could arvhieve the idea result theoretically)
+//    ClsPreEvaluation* pPE = new ClsPreEvaluation(stConfig);
+//    //pPE->GetValidStdCandiByChormoson(1);  // get the first chromosome
+//    delete pPE;
+//    pPE = NULL;
 
     //3. The main body of circular rna detection
     if(stConfig.bDoDetection)

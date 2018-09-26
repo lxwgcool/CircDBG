@@ -19,8 +19,6 @@ SOURCES += main.cpp \
     ../../ShareLibrary/FastqFileParse/kseq_test.c \
     clsparsestdcircrnainfo.cpp \
     clsconfig.cpp \
-    clsreadsmapping.cpp \
-    clspreevaluation.cpp \
     clsdebruijngraph.cpp \
     clscircrnadetection.cpp \
     clsresultcomparison.cpp \
@@ -39,20 +37,10 @@ HEADERS += \
     ../../ShareLibrary/FastqFileParse/kseq.h \
     clsparsestdcircrnainfo.h \
     clsconfig.h \
-    clsreadsmapping.h \
-    clspreevaluation.h \
     clsdebruijngraph.h \
     clscircrnadetection.h \
     clsresultcomparison.h \
     clscomparebasefunction.h
-
-
-unix:!macx: LIBS += -L$$PWD/../../ShareLibrary/bamtools/lib/ -lbamtools
-
-INCLUDEPATH += $$PWD/../../ShareLibrary/bamtools/include
-DEPENDPATH += $$PWD/../../ShareLibrary/bamtools/include
-
-unix:!macx: PRE_TARGETDEPS += $$PWD/../../ShareLibrary/bamtools/lib/libbamtools.a
 
 OTHER_FILES += \
     ../Document/Readme.txt \
