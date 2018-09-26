@@ -15,8 +15,8 @@ BAMTOOLS_LD=/apps/bamtools/2.3.0/lib
 
 CC = g++
 INC_DIR = $(SharedLibraryPath) #Identify include path
-CFLAGS = -O3 -Wall -std=c++0x -static -I$(BAMTOOLS) -L$(BAMTOOLS_LD) -Wl,-rpath,$(BAMTOOLS_LD)
-#CFLAGS = -O3 -Wall -static
+#CFLAGS = -O3 -Wall -std=c++0x -static -I$(BAMTOOLS) -L$(BAMTOOLS_LD) -Wl,-rpath,$(BAMTOOLS_LD)
+CFLAGS = -O3 -Wall -static -std=c++0x
 LIBS += -lz
 LIBS += -lpthread
 #INCLUDEPATH += tr1/memory
@@ -52,8 +52,8 @@ clsconfig.o: ../CircRNADBG/clsconfig.cpp ../CircRNADBG/clsconfig.h
 clsparsestdcircrnainfo.o: ../CircRNADBG/clsparsestdcircrnainfo.cpp ../CircRNADBG/clsparsestdcircrnainfo.h
 	$(CC) $(CFLAGS) -c ../CircRNADBG/clsparsestdcircrnainfo.cpp
 
-clsreadsmapping.o: ../CircRNADBG/clsreadsmapping.cpp ../CircRNADBG/clsreadsmapping.h
-	$(CC) $(CFLAGS) -c ../CircRNADBG/clsreadsmapping.cpp
+#clsreadsmapping.o: ../CircRNADBG/clsreadsmapping.cpp ../CircRNADBG/clsreadsmapping.h
+#	$(CC) $(CFLAGS) -c ../CircRNADBG/clsreadsmapping.cpp
 
 clscircrnadetection.o: ../CircRNADBG/clscircrnadetection.cpp ../CircRNADBG/clscircrnadetection.h
 	$(CC) $(CFLAGS) -c ../CircRNADBG/clscircrnadetection.cpp
@@ -61,8 +61,8 @@ clscircrnadetection.o: ../CircRNADBG/clscircrnadetection.cpp ../CircRNADBG/clsci
 clsdebruijngraph.o: ../CircRNADBG/clsdebruijngraph.cpp ../CircRNADBG/clsdebruijngraph.h
 	$(CC) $(CFLAGS) -c ../CircRNADBG/clsdebruijngraph.cpp
 
-clspreevaluation.o: ../CircRNADBG/clspreevaluation.cpp ../CircRNADBG/clspreevaluation.h
-	$(CC) $(CFLAGS) -c ../CircRNADBG/clspreevaluation.cpp
+#clspreevaluation.o: ../CircRNADBG/clspreevaluation.cpp ../CircRNADBG/clspreevaluation.h
+#	$(CC) $(CFLAGS) -c ../CircRNADBG/clspreevaluation.cpp
 
 clscomparebasefunction.o: ../CircRNADBG/clscomparebasefunction.cpp ../CircRNADBG/clscomparebasefunction.h
 	$(CC) $(CFLAGS) -c ../CircRNADBG/clscomparebasefunction.cpp
@@ -73,13 +73,11 @@ clsresultcomparison.o: ../CircRNADBG/clsresultcomparison.cpp ../CircRNADBG/clsre
 main.o: ../CircRNADBG/main.cpp 
 	$(CC) $(CFLAGS) -c ../CircRNADBG/main.cpp
 
-#CircRnaDetectDraft: clsbasealgorithm.o clsfastareader.o clsfastqreader.o clsbwa.o clsgtfparse.o clsreadconfigini.o clskmeralgorithm.o clsconfig.o clsfindcandidate.o clskmertable.o clsresultcomparison.o clstroubleshoot.o clscircrnadetection.o clsdebruijngraph.o clspreevaluation.o clscomparebasefunction.o clsresultcomparison.o main.o 
-#	$(CC) $(CFLAGS) -o CircRnaDetectDraft clsbasealgorithm.o clsfastareader.o clsfastqreader.o clsbwa.o clsgtfparse.o clsreadconfigini.o clskmeralgorithm.o clsconfig.o clsfindcandidate.o clskmertable.o clsresultcomparison.o clstroubleshoot.o clscomparebasefunction.o clsresultcomparison.o main.o \
-#	-lbamtools -lz
+#CircRNADBG: clsbasealgorithm.o clsfastareader.o clsfastqreader.o clsbwa.o clsgtfparse.o clsreadconfigini.o clskmeralgorithm.o clsconfig.o clsparsestdcircrnainfo.o clsreadsmapping.o clscircrnadetection.o clsdebruijngraph.o clspreevaluation.o clscomparebasefunction.o clsresultcomparison.o main.o 
+#	$(CC) $(CFLAGS) -o CircRNADBG clsbasealgorithm.o clsfastareader.o clsfastqreader.o clsbwa.o clsgtfparse.o clsreadconfigini.o clskmeralgorithm.o clsconfig.o clsparsestdcircrnainfo.o clsreadsmapping.o clscircrnadetection.o clsdebruijngraph.o clspreevaluation.o clscomparebasefunction.o clsresultcomparison.o main.o -lz -lbamtools -lpthread
 
-CircRNADBG: clsbasealgorithm.o clsfastareader.o clsfastqreader.o clsbwa.o clsgtfparse.o clsreadconfigini.o clskmeralgorithm.o clsconfig.o clsparsestdcircrnainfo.o clsreadsmapping.o clscircrnadetection.o clsdebruijngraph.o clspreevaluation.o clscomparebasefunction.o clsresultcomparison.o main.o 
-	$(CC) $(CFLAGS) -o CircRNADBG clsbasealgorithm.o clsfastareader.o clsfastqreader.o clsbwa.o clsgtfparse.o clsreadconfigini.o clskmeralgorithm.o clsconfig.o clsparsestdcircrnainfo.o clsreadsmapping.o clscircrnadetection.o clsdebruijngraph.o clspreevaluation.o clscomparebasefunction.o clsresultcomparison.o main.o -lz -lbamtools -lpthread
-
+CircRNADBG: clsbasealgorithm.o clsfastareader.o clsfastqreader.o clsbwa.o clsgtfparse.o clsreadconfigini.o clskmeralgorithm.o clsconfig.o clsparsestdcircrnainfo.o clscircrnadetection.o clsdebruijngraph.o clscomparebasefunction.o clsresultcomparison.o main.o 
+	$(CC) $(CFLAGS) -o CircRNADBG clsbasealgorithm.o clsfastareader.o clsfastqreader.o clsbwa.o clsgtfparse.o clsreadconfigini.o clskmeralgorithm.o clsconfig.o clsparsestdcircrnainfo.o clscircrnadetection.o clsdebruijngraph.o clscomparebasefunction.o clsresultcomparison.o main.o -lz -lpthread
 
 RM-F := rm -f
 .PHONY : all deps objs clean veryclean rebuild info

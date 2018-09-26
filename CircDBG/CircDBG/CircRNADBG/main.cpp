@@ -9,6 +9,7 @@
 #include "../../ShareLibrary/clsbasealgorithm.h"
 #include <unistd.h>
 #include <pthread.h>
+#include <string.h>
 
 using namespace std;
 
@@ -25,6 +26,17 @@ void FindCircByMultiThreads(ClsCircRNADetection* pCircRNADetection, St_Config& s
 
 int main(int argc, char **argv)
 {
+    if(argc == 1 ||
+       strcmp(argv[1], "-h") == 0 ||
+       strcmp(argv[1], "--help") == 0)
+    {
+        cout << "**********************************" << endl;
+        cout << "How to use CircDBG" << endl;
+        cout << "./CircRNADBG ./config.ini" << endl;
+        cout << "**********************************" << endl;
+        return 0;
+    }
+
     //1. Read Config File
     ClsConfig* pConfig = new ClsConfig();
     St_Config stConfig;

@@ -5,6 +5,7 @@
 #include "cstdlib"  // This library is special for "atoi"
 #include <map>
 #include "clsclassificaiton.h"
+#include <string.h>
 
 using namespace std;
 
@@ -31,6 +32,17 @@ enum En_ReadsType{rtFasta=0, rtFastq, rtMax};
 
 int main(int argc, char** argv)
 {
+    if(argc == 1 ||
+       strcmp(argv[1], "-h") == 0 ||
+       strcmp(argv[1], "--help") == 0)
+    {
+        cout << "**********************************" << endl;
+        cout << "How to use CircAssistant" << endl;
+        cout << "./CircAssistant ./config.ini" << endl;
+        cout << "**********************************" << endl;
+        return 0;
+    }
+
     //Read Config File --->
     St_Config stConfig;
     ClsReadConfigIni* pIni = new ClsReadConfigIni();
