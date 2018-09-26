@@ -51,9 +51,9 @@ void ClsCircRNADetection::FindCirc(unordered_map<unsigned int, St_Node>& mpSDBG,
 
     //cout << "Do real detection" << endl;
     ofstream ofsDebug;
-    ofsDebug.open(("./Detection_Result/_debug_" + strChromName + ".txt").c_str());
 
 #ifdef _DEBUG
+    ofsDebug.open(("./Detection_Result/_debug_" + strChromName + ".txt").c_str());
     ofsDebug << "Do it" << endl;
 #endif
 
@@ -157,9 +157,9 @@ void ClsCircRNADetection::FindCirc(unordered_map<unsigned int, St_Node>& mpSDBG,
     //cout << "Print Circ Candidate" << endl;
     PrintCircCandidate(vSelfCircCandi, vRegCircCandi, strChromName);
 
-//#ifdef _DEBUG
+#ifdef _DEBUG
     ofsDebug.close();
-//#endif
+#endif
 }
 
 int ClsCircRNADetection::CheckSampling(unsigned int* arrySamplingKmer,

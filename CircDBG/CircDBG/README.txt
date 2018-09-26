@@ -56,9 +56,10 @@ How to use CircDBG
 
 4: Result: 
   (1) The results locate in the folder "./Detection_Result"
-  (2) ./Candidate_*.txt: Recorded the circular splicing junciton of each potential circular RNA for each chromosome respectively. 
-  (3) ./Brief_*.txt    : Breif format of "./Candidate_*.txt" for each chromosome respectively.
-  (4) ./Brief_sum.txt  : The summary of /Brief_*.txt.
+  (2) ./Candidate_*.txt : Recorded the circular splicing junciton of each potential circular RNA for each chromosome respectively. 
+  (3) ./Brief_*.txt     : Breif format of "./Candidate_*.txt" for each chromosome respectively.
+  (4) ./Brief_sum.txt   : The summary of /Brief_*.txt
+  (5) ./DBG_Result_*.txt: Detail info of each detected circular RNA.
 
 5: Notice: 
   (1) The chromosome should be listed in gtf file sequencially, which means that the order should be 1,2,3,4,5 and etc. The chromosome should start at the first one.  
