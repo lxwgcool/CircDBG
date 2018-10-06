@@ -23,6 +23,8 @@ void ResultComparison(St_Config& stConfig);
 void FindCircByMultiThreads(ClsCircRNADetection* pCircRNADetection, St_Config& stConfig,
                             vector<St_Fastq>& vReads, ClsDeBruijnGraph* vDBG,
                             vector<St_Row_Chrom>& vChrom, vector<St_Fasta>& vFasta);
+void CheckGTF(St_Config& stConfig);
+void CheckResultSum(St_Config& stConfig);
 
 int main(int argc, char **argv)
 {
@@ -43,6 +45,10 @@ int main(int argc, char **argv)
     pConfig->ReadConfig(stConfig, argv[1]);
     delete pConfig;
     pConfig = NULL;
+
+//    //CheckGTF(stConfig);
+//    CheckResultSum(stConfig);
+//    return 0;
 
 //    //2. Make evaluation (Check if we could arvhieve the idea result theoretically)
 //    ClsPreEvaluation* pPE = new ClsPreEvaluation(stConfig);
@@ -681,3 +687,86 @@ void ComparisonNormal(St_Config& stConfig, vector<St_Row_Chrom>& vChrom, ClsResu
                                                            stConfig.strCircMarkerResult, stConfig.strCircRNAFinderResult);
 }
 
+void CheckGTF(St_Config& stConfig)
+{
+    //Parse GTF
+    //1. Parse GTF File
+    vector<St_Row_Chrom> vChrom;
+    ClsGTFParse* pGTFParse = new ClsGTFParse();
+    pGTFParse->Init(stConfig.strGtfPath, stConfig.strRefPath, stConfig.iKmerLen,
+                    stConfig.iReadLen, stConfig.fKmerRatio);
+    pGTFParse->ReadGTF(vChrom, stConfig.strGtfPath); //Done
+
+    delete pGTFParse;
+    pGTFParse = NULL;
+
+    //Make Statistic
+    //1:Check how many exon contained by GTF
+    const int MINLEN = 15;
+    int iExonSum = 0;
+    int iShortExon = 0;
+    vector< vector<St_Raw_Exon> > vvExon;
+    vector<St_Raw_Exon> vTempExon;
+    for(vector<St_Row_Chrom>::iterator itrChrom = vChrom.begin(); itrChrom != vChrom.end(); itrChrom++)
+    {
+        vTempExon.clear();
+        for(vector<St_Raw_Gene>::iterator itrRG = itrChrom->vRG.begin(); itrRG != itrChrom->vRG.end(); itrRG++)
+        {
+            for(vector<St_Raw_Transcript>::iterator itrRT = itrRG->vRT.begin(); itrRT != itrRG->vRT.end(); itrRT++)
+            {
+                for(vector<St_Raw_Exon>::iterator itrExon = itrRT->vRExon.begin(); itrExon != itrRT->vRExon.end(); itrExon++)
+                {
+                    bool bFind = false;
+                    for(vector<St_Raw_Exon>::iterator itrTmp = vTempExon.begin(); itrTmp != vTempExon.end(); itrTmp++)
+                    {
+                        if(itrTmp->iStart == itrExon->iStart &&
+                           itrTmp->iEnd == itrExon->iEnd &&
+                           itrTmp->bRC == itrExon->bRC)
+                        {
+                            bFind = true;
+                            break;
+                        }
+                    }
+                    if(!bFind)
+                        vTempExon.push_back(*itrExon);
+                }
+            }
+        }
+        vvExon.push_back(vTempExon);
+    }
+
+    //Statistic
+    for(vector< vector<St_Raw_Exon> >::iterator itr = vvExon.begin(); itr != vvExon.end(); itr++)
+    {
+        for(vector<St_Raw_Exon>::iterator subItr = itr->begin(); subItr != itr->end(); subItr++)
+        {
+            iExonSum++;
+            if(subItr->GetLength() < MINLEN)
+                iShortExon++;
+        }
+    }
+
+    cout << "Tatal Number of Exon: " << IntToStr(iExonSum) << endl;
+    cout << "Short Exon (<MINLEN): " << IntToStr(iShortExon) << endl;
+}
+
+void CheckResultSum(St_Config& stConfig)
+{
+    vector<St_Row_Chrom> vChrom;
+    ClsGTFParse* pGTFParse = new ClsGTFParse();
+    pGTFParse->Init(stConfig.strGtfPath, stConfig.strRefPath, stConfig.iKmerLen,
+                    stConfig.iReadLen, stConfig.fKmerRatio);
+    pGTFParse->ReadGTF(vChrom, stConfig.strGtfPath); //Done
+    delete pGTFParse;
+    pGTFParse = NULL;
+
+    ClsResultComparison* pResultCompare = new ClsResultComparison();
+    pResultCompare->Init(stConfig);
+
+    string strResult1 = "/gpfs/scratchfs1/xil14026/circRNA/data/CircDBG/CircDBG/job/treated_untreated_human/treated_SRR1636985/Detection_Result/Brief_sum.txt";
+    string strResult2 = "/gpfs/scratchfs1/xil14026/circRNA/data/CircDBG/CircDBG/job/treated_untreated_human/untreated_SRR1637089/Detection_Result";
+    pResultCompare->GetIntersectionBT2Results(vChrom, strResult1, strResult2, swMyProgram, swMyProgram);
+
+    delete pResultCompare;
+    pResultCompare = NULL;
+}

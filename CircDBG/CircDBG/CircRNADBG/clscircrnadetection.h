@@ -150,6 +150,14 @@ struct St_Candidate
     {
         return this->iStartPos < rhs.iStartPos;
     }
+
+    string GetStrand()
+    {
+        if(this->bRC)
+            return "-";
+        else
+            return "+";
+    }
 };
 
 struct St_HitNode

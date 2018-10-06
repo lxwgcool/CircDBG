@@ -865,7 +865,8 @@ void ClsCircRNADetection::PrintCircCandidate(vector<St_Candidate>& vSelfCircCand
         ofsBrief << strChromName << " " // << IntToStr(itr->ucChromIndex) << " "
                  << IntToStr(itr->iStartPos) << " " << IntToStr(itr->iEndPos) << " "
                  << IntToStr(itr->iSupportNum) << " "
-                 << itr->strTag << " "
+                 //<< itr->strTag << " "
+                 << itr->GetStrand() << " "
                  << "S" << endl;
 
         mpDuplicateTest[itr->iStartPos + itr->iEndPos] = itr->iSupportNum;
@@ -889,7 +890,8 @@ void ClsCircRNADetection::PrintCircCandidate(vector<St_Candidate>& vSelfCircCand
         ofsBrief << strChromName << " " // << IntToStr(itr->ucChromIndex) << " "
                  << IntToStr(itr->iStartPos) << " " << IntToStr(itr->iEndPos) << " "
                  << IntToStr(itr->iSupportNum) << " "
-                 << itr->strTag << " "
+                 //<< itr->strTag << " "
+                 << itr->GetStrand() << " "
                  << "R" << endl;
     }
 
