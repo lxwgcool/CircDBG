@@ -67,9 +67,14 @@ void ClsCircRNADetection::FindCirc(unordered_map<unsigned int, St_Node>& mpSDBG,
         if((int)itr->strSeq.length() < m_iReadLen - 5) // 5 diffs torlerant
             continue;
 
+        if(m_iReadLen < m_iKmerLen*2)
+            continue;
+
         //(1) delete all of reads contain letter 'N'
         if(itr->strSeq.find('N') != string::npos) // 这个表示找到了
             continue;
+
+        m_iReadLen = itr->strSeq.length();
 
         //如果没有N
         //(2) evenly sampling reads
