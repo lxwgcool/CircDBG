@@ -62,6 +62,7 @@ void ClsCircRNADetection::FindCirc(unordered_map<unsigned int, St_Node>& mpSDBG,
     ofstream ofsDBGResult;
     ofsDBGResult.open(("./Detection_Result/DBG_Result_" + strChromName + ".txt").c_str());
 
+    int iOrgConfigReadLen = m_iReadLen;
     for(vector<St_Fastq>::iterator itr = vReads.begin(); itr != vReads.end(); itr++)
     {
         if((int)itr->strSeq.length() < m_iReadLen - 5) // 5 diffs torlerant
@@ -157,6 +158,7 @@ void ClsCircRNADetection::FindCirc(unordered_map<unsigned int, St_Node>& mpSDBG,
         }
     }
 
+    m_iReadLen = iOrgConfigReadLen;
     //3: know the order of those exons. (based on the hitting position from reads)
     //Output all of m_vSelfCircCandi and Output all of m_vRefCircCandi
     //cout << "Print Circ Candidate" << endl;
